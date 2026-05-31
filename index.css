@@ -1,0 +1,95 @@
+body {
+    background: #0a0a0a;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+}
+.erro-msg {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 0, 0, 0.85);
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 6px;
+    z-index: 9999;
+}
+
+.stockfy-neon {
+    font-size: 50px;
+    color: #00ffff;
+    text-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 280px;
+    margin: 0 auto; /* centraliza o form */
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+input {
+    width: 250px;
+    padding: 10px;
+    margin-top: 5px;
+    background: #111;
+    border: 1px solid #00ffff;
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: 0 0 10px #00ffff inset;
+}
+
+button {
+    margin-top: 15px;
+    width: 200px;
+    padding: 10px;
+    background: #00ffff;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 0 20px #00ffff;
+    transition: 0.2s;
+}
+
+button:hover {
+    box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff;
+}
+
+/* IMAGEM NEON */
+.neon-img {
+    width: 180px;
+    margin-bottom: 20px;
+    
+}
