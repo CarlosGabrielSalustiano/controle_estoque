@@ -18,7 +18,7 @@ function enviarEmailAlerta($para, $assunto, $mensagem) {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
         $mail->Port       = 587;                                    
 
-        $mail->CharSet = 'UTF-8'; 
+        $mail->CharSet = 'pt-br'; 
 
         $mail->setFrom('ResponsavelDaEmpresa@gmail.com', 'STOCKFY Alertas');
         $mail->addAddress($para);

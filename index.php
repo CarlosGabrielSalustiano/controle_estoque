@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="pt-br">
     <title>Login - Controle de Estoque</title>
 
     <!-- SOMENTE O INDEX USA ESTE CSS -->

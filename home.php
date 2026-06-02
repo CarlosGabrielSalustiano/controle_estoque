@@ -26,7 +26,7 @@ $ultimas_mov = $conn->query("
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="pt-br">
     <title>Dashboard - STOCKFY</title>
     <link rel="stylesheet" href="style.css">
 </head>

@@ -20,7 +20,7 @@ $email_atual = $busca_config['valor'];
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="pt-br">
     <title>Configurações - STOCKFY</title>
     <link rel="stylesheet" href="style.css">
 </head>

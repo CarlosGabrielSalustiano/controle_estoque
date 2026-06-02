@@ -33,7 +33,7 @@ class PHPMailer
 {
     const CHARSET_ASCII = 'us-ascii';
     const CHARSET_ISO88591 = 'iso-8859-1';
-    const CHARSET_UTF8 = 'utf-8';
+    const CHARSET_UTF8 = 'pt-br';
 
     const CONTENT_TYPE_PLAINTEXT = 'text/plain';
     const CONTENT_TYPE_TEXT_CALENDAR = 'text/calendar';
@@ -937,7 +937,7 @@ class PHPMailer
                 echo htmlentities(
                     preg_replace('/[\r\n]+/', '', $str),
                     ENT_QUOTES,
-                    'UTF-8'
+                    'pt-br'
                 ), "<br>\n";
                 break;
             case 'echo':
@@ -1228,7 +1228,7 @@ class PHPMailer
             ((bool) preg_match('/[\x80-\xFF]/', $address))
         ) {
             //The caller has not altered the validator and is sending to an address
-            //with UTF-8, so assume that they want UTF-8 support instead of failing
+            //with pt-br, so assume that they want pt-br support instead of failing
             $this->CharSet = self::CHARSET_UTF8;
             self::$validator = 'eai';
         }
@@ -1622,7 +1622,7 @@ class PHPMailer
             $domain = substr($address, ++$pos);
             //Verify CharSet string is a valid one, and domain properly encoded in this CharSet.
             if ($this->has8bitChars($domain) && @mb_check_encoding($domain, $this->CharSet)) {
-                //Convert the domain from whatever charset it's in to UTF-8
+                //Convert the domain from whatever charset it's in to pt-br
                 $domain = mb_convert_encoding($domain, self::CHARSET_UTF8, $this->CharSet);
                 //Ignore IDE complaints about this line - method signature changed in PHP 5.4
                 $errorcode = 0;
@@ -2686,7 +2686,7 @@ class PHPMailer
         } else {
             $soft_break = static::$LE;
         }
-        //If utf-8 encoding is used, we will need to make sure we don't
+        //If pt-br encoding is used, we will need to make sure we don't
         //split multibyte characters when we wrap
         $is_utf8 = static::CHARSET_UTF8 === strtolower($this->CharSet);
         $lelen = strlen(static::$LE);
@@ -2770,11 +2770,11 @@ class PHPMailer
     }
 
     /**
-     * Find the last character boundary prior to $maxLength in a utf-8
+     * Find the last character boundary prior to $maxLength in a pt-br
      * quoted-printable encoded string.
      * Original written by Colin Brown.
      *
-     * @param string $encodedText utf-8 QP text
+     * @param string $encodedText pt-br QP text
      * @param int    $maxLength   Find the last character boundary prior to this length
      *
      * @return int
@@ -3071,7 +3071,7 @@ class PHPMailer
             $bodyEncoding = static::ENCODING_8BIT;
         } elseif (static::ENCODING_8BIT === $bodyEncoding && !$this->has8bitChars($this->Body)) {
             $bodyEncoding = static::ENCODING_7BIT;
-            //All ISO 8859, Windows codepage and UTF-8 charsets are ascii compatible up to 7-bit
+            //All ISO 8859, Windows codepage and pt-br charsets are ascii compatible up to 7-bit
             $bodyCharSet = static::CHARSET_ASCII;
         }
         //If lines are too long, and we're not already using an encoding that will shorten them,
@@ -3085,7 +3085,7 @@ class PHPMailer
         //Can we do a 7-bit downgrade?
         if (static::ENCODING_8BIT === $altBodyEncoding && !$this->has8bitChars($this->AltBody)) {
             $altBodyEncoding = static::ENCODING_7BIT;
-            //All ISO 8859, Windows codepage and UTF-8 charsets are ascii compatible up to 7-bit
+            //All ISO 8859, Windows codepage and pt-br charsets are ascii compatible up to 7-bit
             $altBodyCharSet = static::CHARSET_ASCII;
         }
         //If lines are too long, and we're not already using an encoding that will shorten them,
@@ -3825,7 +3825,7 @@ class PHPMailer
         $hasEncodedWord = (bool) preg_match('/=\?.*\?=/s', $value);
         if ($hasEncodedWord && defined('MB_CASE_UPPER')) {
             $origCharset = mb_internal_encoding();
-            // Always decode to UTF-8 to provide a consistent, modern output encoding.
+            // Always decode to pt-br to provide a consistent, modern output encoding.
             mb_internal_encoding($charset);
             if (PHP_VERSION_ID < 80300) {
                 // Undo any RFC2047-encoded spaces-as-underscores.

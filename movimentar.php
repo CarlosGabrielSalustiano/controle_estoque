@@ -84,7 +84,7 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="pt-br">
     <title>Movimentações - Controle de Estoque</title>
     <link rel="stylesheet" href="style.css">
     <script>

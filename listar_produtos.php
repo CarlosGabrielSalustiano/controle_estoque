@@ -12,7 +12,7 @@ $result = $conn->query("SELECT * FROM produtos");
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="pt-br">
     <title>Listar Produtos - STOCKFY</title>
     <link rel="stylesheet" href="style.css">
 </head>
