@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login - Controle de Estoque</title>
 
     <!-- SOMENTE O INDEX USA ESTE CSS -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
