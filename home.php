@@ -1,7 +1,5 @@
 <?php
 session_start();
-$produtos = [];
-
 include "conexao.php";
 
 if(!isset($_SESSION["usuario_id"])){
@@ -9,12 +7,13 @@ if(!isset($_SESSION["usuario_id"])){
     exit;
 }
 
-// Consultas para cards
 $total_produtos = $conn->query("SELECT COUNT(*) as total FROM produtos")->fetch_assoc()['total'];
 $total_entradas = $conn->query("SELECT SUM(quantidade) as total FROM movimentacoes WHERE tipo='entrada'")->fetch_assoc()['total'];
 $total_saidas   = $conn->query("SELECT SUM(quantidade) as total FROM movimentacoes WHERE tipo='saida'")->fetch_assoc()['total'];
 
-// Últimas 5 movimentações
+// Conta dinamicamente itens críticos
+$total_criticos = $conn->query("SELECT COUNT(*) as total FROM produtos WHERE quantidade <= quantidade_minima AND quantidade_minima > 0")->fetch_assoc()['total'];
+
 $ultimas_mov = $conn->query("
     SELECT m.*, p.nome as produto_nome, u.nome as usuario_nome 
     FROM movimentacoes m
@@ -24,66 +23,44 @@ $ultimas_mov = $conn->query("
     LIMIT 5
 ");
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Controle de Estoque</title>
-    <link rel="stylesheet" href="/controle_estoque/style.css">
+    <title>Dashboard - STOCKFY</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
+<div class="welcome">Bem-vindo, <strong><?php echo $_SESSION["usuario_nome"]; ?></strong>!</div>
+<h1>STOCKFY</h1>
 
-<!-- Bem-vindo -->
-<div class="welcome">
-    Bem-vindo, <?php echo $_SESSION["usuario_nome"]; ?>!
-    <!-- Alertas de estoque -->
-<?php
-foreach($produtos as $p){
-    if(isset($p['alerta']) && $p['quantidade'] <= $p['alerta']){
-        echo "<p class='alerta'>⚠ O produto <b>".htmlspecialchars($p['nome'])."</b> atingiu o estoque mínimo (".intval($p['quantidade'])." unidades)</p>";
-    }
-}
-?>
-</div>
-
-<!-- Menu lateral -->
 <nav>
     <ul>
-        <li><a href="home.php">Dashboard</a></li>
+        <li><a href="home.php" style="font-weight: bold;">Dashboard</a></li>
         <li><a href="cadastrar_produto.php">Cadastrar Produto</a></li>
         <li><a href="listar_produtos.php">Listar Produtos</a></li>
         <li><a href="movimentar.php">Movimentações</a></li>
-        <li><a href="index.php">Sair</a></li>
+        <li><a href="configuracoes.php">Configurações</a></li>
+        <li><a href="logout.php" style="color: #ef4444;">Sair</a></li>
     </ul>
 </nav>
 
-<!-- Cards de resumo -->
 <div class="cards-container">
-    <div class="card">
-        <h3>Total de Produtos</h3>
-        <p><?php echo $total_produtos; ?></p>
-    </div>
-    <div class="card">
-        <h3>Total de Entradas</h3>
-        <p><?php echo $total_entradas ?: 0; ?></p>
-    </div>
-    <div class="card">
-        <h3>Total de Saídas</h3>
-        <p><?php echo $total_saidas ?: 0; ?></p>
+    <div class="card"><h3>Total de Produtos</h3><p><?php echo $total_produtos; ?></p></div>
+    <div class="card"><h3>Total de Entradas</h3><p><?php echo $total_entradas ?: 0; ?></p></div>
+    <div class="card"><h3>Total de Saídas</h3><p><?php echo $total_saidas ?: 0; ?></p></div>
+    
+    <div class="card <?= $total_criticos > 0 ? 'card-alerta-aceso' : '' ?>">
+        <h3>Estoque Crítico</h3>
+        <p style="color: <?= $total_criticos > 0 ? '#b45309' : '#111827' ?>;"><?php echo $total_criticos; ?></p>
     </div>
 </div>
 
-<!-- Últimas movimentações -->
 <h2>Últimas Movimentações</h2>
 <table>
     <thead>
         <tr>
-            <th>Produto</th>
-            <th>Tipo</th>
-            <th>Quantidade</th>
-            <th>Usuário</th>
-            <th>Data</th>
+            <th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Usuário</th><th>Data</th>
         </tr>
     </thead>
     <tbody>
@@ -98,6 +75,5 @@ foreach($produtos as $p){
         <?php endwhile; ?>
     </tbody>
 </table>
-
 </body>
 </html>

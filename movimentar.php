@@ -36,8 +36,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Atualiza estoque e registra movimentação se permitido
     if ($nova_quantidade != $quantidade_atual) {
         $conn->query("UPDATE produtos SET quantidade = $nova_quantidade WHERE id = $produto_id");
-        $conn->query("INSERT INTO movimentacoes (produto_id, usuario_id, tipo, quantidade) 
-                      VALUES ($produto_id, $usuario_id, '$tipo', $quantidade)");
+        $conn->query("INSERT INTO movimentacoes (produto_id, usuario_id, tipo, quantidade) VALUES ($produto_id, $usuario_id, '$tipo', $quantidade)");
+
+        // LÓGICA DE INTERCEPTAÇÃO E DISPARO VIA SMTP
+        if ($tipo == "saida") {
+            $busca = $conn->query("SELECT nome, quantidade_minima FROM produtos WHERE id = $produto_id")->fetch_assoc();
+            $limite_definido = $busca['quantidade_minima'];
+            $nome_produto = $busca['nome'];
+
+            if ($nova_quantidade <= $limite_definido && $limite_definido > 0) {
+                // Puxa o e-mail digitado dinamicamente na página de configurações
+                $busca_email = $conn->query("SELECT valor FROM configuracoes WHERE chave = 'email_alerta'")->fetch_assoc();
+                $email_banca = $busca_email['valor'];
+
+                include_once "funcao_alerta.php";
+
+                $assunto = "⚠️ Alerta STOCKFY: Limite Crítico - " . $nome_produto;
+                $msg = "Olá Administrador,\n\n";
+                $msg .= "O produto '" . $nome_produto . "' (ID: " . $produto_id . ") atingiu o limite operacional definido na interface gráfica.\n\n";
+                $msg .= "Parâmetro Mínimo: " . $limite_definido . " unidades.\n";
+                $msg .= "Saldo Atualizado: " . $nova_quantidade . " unidades.\n\n";
+                $msg .= "Mensagem automatizada gerada pelo STOCKFY.";
+
+                enviarEmailAlerta($email_banca, $assunto, $msg);
+            }
+        }
+
         echo "<p class='sucesso'>Movimentação registrada com sucesso!</p>";
     }
 }
@@ -69,7 +93,7 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
             let filtro = input.value.toLowerCase();
             let linhas = document.querySelectorAll("#tabelaMov tbody tr");
             linhas.forEach(linha => {
-                let texto = linha.innerText.toLowerCase();
+                let texto = linha.innerText.toLowerCase(); // <-- Corrigido aqui (linha em vez de line)
                 linha.style.display = texto.includes(filtro) ? "" : "none";
             });
         }
@@ -82,7 +106,6 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
 
     <h2>📊 Controle de saída </h2>
 
-    <!-- Formulário de movimentação -->
     <form method="post" class="form-movimentar">
         <label>Produto:</label>
         <select name="produto_id" required>
@@ -96,7 +119,6 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
 
         <label>Tipo de Movimentação:</label>
         <select name="tipo" required>
-            <!--<option value="entrada">Entrada</option>-->
             <option value="saida">Saída</option>
         </select>
 
@@ -106,7 +128,6 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
         <button type="submit">Registrar Movimentação</button>
     </form>
 
-    <!-- Cards de resumo: apenas entradas e saídas -->
     <div class="cards-container">
         <div class="card">
             <h3>Total de Entradas</h3>
@@ -118,10 +139,8 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
         </div>
     </div>
 
-    <!-- Campo de busca -->
     <input type="text" id="buscaMov" placeholder="🔍 Buscar movimentação..." onkeyup="buscarMov()">
 
-    <!-- Tabela de movimentações -->
     <table id="tabelaMov">
         <thead>
             <tr>

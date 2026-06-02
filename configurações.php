@@ -1,0 +1,44 @@
+<?php
+session_start();
+include "conexao.php";
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: index.php");
+    exit;
+}
+
+$mensagem = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $novo_email = $conn->real_escape_string($_POST["email_alerta"]);
+    $conn->query("UPDATE configuacoes SET valor = '$novo_email' WHERE chave = 'email_alerta'");
+    $mensagem = "<div class='msg-sucesso'>E-mail de destino atualizado!</div>";
+}
+
+$busca_config = $conn->query("SELECT valor FROM configuacoes WHERE chave = 'email_alerta'")->fetch_assoc();
+$email_atual = $busca_config['valor'];
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações - STOCKFY</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <center><h1>STOCKFY</h1></center>
+    
+    <?= $mensagem ?>
+
+    <form method="post" style="max-width: 400px;">
+        <h2>⚙️ Configurações Gerais</h2>
+        <div class="form-group">
+            <label>E-mail do Gerente para Alertas:</label>
+            <input type="email" name="email_alerta" value="<?= htmlspecialchars($email_atual) ?>" required style="width: 90%;">
+            <span style="font-size: 12px; color: #6b7280; margin-top: 5px;">A banca pode alterar este endereço livremente pela tela.</span>
+        </div>
+        <button type="submit">Salvar Configuração</button>
+        <br><br>
+        <center><a href="home.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">⬅ Voltar ao Painel</a></center>
+    </form>
+</body>
+</html>
