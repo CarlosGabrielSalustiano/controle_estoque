@@ -14,7 +14,7 @@ $result = $conn->query("SELECT * FROM produtos");
 <head>
     <meta charset="UTF-8">
     <title>Listar Produtos - STOCKFY</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="welcome">Bem-vindo, <b><?php echo $_SESSION["usuario_nome"]; ?></b>!</div>

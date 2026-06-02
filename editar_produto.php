@@ -28,7 +28,7 @@ if (!$prod) { die("Produto não encontrado."); }
 <head>
     <meta charset="UTF-8">
     <title>Configurar Produto - STOCKFY</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <center><h1>STOCKFY</h1></center>
