@@ -13,14 +13,14 @@ function enviarEmailAlerta($para, $assunto, $mensagem) {
         $mail->isSMTP();                                            
         $mail->Host       = 'smtp.gmail.com';                     
         $mail->SMTPAuth   = true;                                   
-        $mail->Username   = 'Stocfy.alertas@gmail.com';       // Gmail enviar alerta
-        $mail->Password   = 'idqwivyqjvxfjewj';     // Código de 16 letras gerado no Google
+        $mail->Username   = 'Responsavel@gmail.com';       // Gmail enviar alerta
+        $mail->Password   = 'Senha de APP';     // Código de 16 letras gerado no Google
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
         $mail->Port       = 587;                                    
 
         $mail->CharSet = 'pt-br'; 
 
-        $mail->setFrom('Stocfy.alertas@gmail.com', 'STOCKFY Alertas');
+        $mail->setFrom('Responsavel@gmail.com', 'STOCKFY Alertas');  // Gmail enviar alerta
         $mail->addAddress($para);
 
         $mail->isHTML(false); 

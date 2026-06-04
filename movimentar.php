@@ -53,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $assunto = "⚠️ Alerta STOCKFY: Limite Crítico - " . $nome_produto;
                 $msg = "Olá Administrador,\n\n";
-                $msg .= "O produto '" . $nome_produto . "' (ID: " . $produto_id . ") atingiu o limite operacional definido na interface gráfica.\n\n";
-                $msg .= "Parâmetro Mínimo: " . $limite_definido . " unidades.\n";
-                $msg .= "Saldo Atualizado: " . $nova_quantidade . " unidades.\n\n";
+                $msg .= "O produto '" . $nome_produto . "' (ID: " . $produto_id . ") atingiu o limite mínimo definido.\n\n";
+                $msg .= "Limite Mínimo Definido: " . $limite_definido . " unidades.\n";
+                $msg .= "Limite Atual: " . $nova_quantidade . " unidades.\n\n";
                 $msg .= "Mensagem automatizada gerada pelo STOCKFY.";
 
                 enviarEmailAlerta($email_banca, $assunto, $msg);

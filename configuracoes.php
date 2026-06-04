@@ -10,7 +10,7 @@ if (!isset($_SESSION["usuario_id"])) {
 $mensagem = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $novo_email = $conn->real_escape_string($_POST["email_alerta"]);
-    $conn->query("UPDATE configuacoes SET valor = '$novo_email' WHERE chave = 'email_alerta'");
+    $conn->query("UPDATE configuracoes SET valor = '$novo_email' WHERE chave = 'email_alerta'");
     $mensagem = "<div class='msg-sucesso'>E-mail de destino atualizado!</div>";
 }
 

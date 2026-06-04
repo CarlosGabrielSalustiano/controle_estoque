@@ -44,7 +44,7 @@ if (!$prod) { die("Produto não encontrado."); }
         </div>
         <button type="submit">Atualizar Limites</button>
         <br><br>
-        <center><a href="listar_produtos.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">Cancelar</a></center>
+        <center><a href="movimentar.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">Cancelar</a></center>
     </form>
 </body>
 </html>
