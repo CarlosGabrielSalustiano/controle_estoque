@@ -1,6 +1,6 @@
 ## Estoqueria
 
-    Sistema web de controle de estoque desenvolvido em PHP e MySQL para auxiliar empresas no gerenciamento de produtos, movimentações e monitoramento de estoque.
+>Sistema web de controle de estoque desenvolvido em PHP e MySQL para auxiliar empresas no gerenciamento de produtos, movimentações e monitoramento de estoque.
 
 ## Funcionalidades
 
@@ -23,9 +23,9 @@
 
 ## Sistema de Alertas
 
-    O sistema monitora automaticamente a quantidade mínima dos produtos cadastrados.
+O sistema monitora automaticamente a quantidade mínima dos produtos cadastrados.
 
-    Quando o estoque de um produto atinge ou fica abaixo do limite definido, uma notificação é enviada para o e-mail configurado na área de Configurações.
+Quando o estoque de um produto atinge ou fica abaixo do limite definido, uma notificação é enviada para o e-mail configurado na área de Configurações.
 
 ## Tecnologias
 
