@@ -11,13 +11,29 @@ Sistema web de controle de estoque desenvolvido em PHP e MySQL.
 - Busca de produtos
 - Notificações de estoque baixo (em desenvolvimento)
 
+# Login
+
+![Login](assets/telalogin.png)
+
 # Dashboard
 
-![Dashboard](assets/dashboard.png)
+![Dashboard](assets/teladashboard.png)
 
-# Tela de Produtos
+# Cadastro de Produtos
 
-![Produtos](assets/produtos.png)
+![Cadastro Produtos](assets/telacadastrarproduto.png)
+
+# Estoque
+
+![Estoque](assets/telaestoque.png)
+
+# Movimentações
+
+![Movimentações](assets/telasaida.png)
+
+# Configurações
+
+![Configurações](assets/telaconfig.png)
 
 # Tecnologias
 
