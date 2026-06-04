@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mensagem = "<div class='msg-sucesso'>E-mail de destino atualizado!</div>";
 }
 
-$busca_config = $conn->query("SELECT valor FROM configuacoes WHERE chave = 'email_alerta'")->fetch_assoc();
+$busca_config = $conn->query("SELECT valor FROM configuracoes WHERE chave = 'email_alerta'")->fetch_assoc();
 $email_atual = $busca_config['valor'];
 ?>
 <!DOCTYPE html>
@@ -32,9 +32,9 @@ $email_atual = $busca_config['valor'];
     <form method="post" style="max-width: 400px;">
         <h2>⚙️ Configurações Gerais</h2>
         <div class="form-group">
-            <label>E-mail do Gerente para Alertas:</label>
+            <label>E-mail do responsável:</label>
             <input type="email" name="email_alerta" value="<?= htmlspecialchars($email_atual) ?>" required style="width: 90%;">
-            <span style="font-size: 12px; color: #6b7280; margin-top: 5px;">A banca pode alterar este endereço livremente pela tela.</span>
+            <span style="font-size: 12px; color: #6b7280; margin-top: 5px;">Este E-mail receberá as notificações de alerta do estoque.</span>
         </div>
         <button type="submit">Salvar Configuração</button>
         <br><br>
