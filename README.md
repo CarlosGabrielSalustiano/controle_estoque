@@ -1,6 +1,6 @@
 ## Estoqueria
 
->Sistema web de controle de estoque desenvolvido em PHP e MySQL para auxiliar empresas no gerenciamento de produtos, movimentações e monitoramento de estoque.
+Sistema web de controle de estoque desenvolvido em PHP e MySQL para auxiliar empresas no gerenciamento de produtos, movimentações e monitoramento de estoque.
 
 ## Funcionalidades
 
