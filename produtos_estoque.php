@@ -19,6 +19,7 @@ $result = $conn->query("SELECT * FROM produtos");
 <body>
     <div class="welcome">Bem-vindo, <b><?php echo $_SESSION["usuario_nome"]; ?></b>!</div>
     <h1>STOCKFY - Produtos em Estoque</h1>
+    <p><a href="home.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">⬅ Voltar ao Painel</a></p>
 
     <table id="tabelaProdutos">
         <thead>
@@ -43,6 +44,5 @@ $result = $conn->query("SELECT * FROM produtos");
             <?php endwhile; ?>
         </tbody>
     </table>
-    <br><center><a href="home.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">⬅ Voltar ao Painel</a></center>
 </body>
 </html>

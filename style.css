@@ -312,3 +312,35 @@ tr:hover {
     max-width: 300px;
     margin: 20px auto;
 }
+.btn-cadastro {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-cadastro:hover {
+    background: #1d4ed8;
+}
+/* LOGIN */
+
+.neon-img {
+    display: block;
+    margin: 30px auto 10px auto;
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+}
+
+.stockfy-neon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body:has(.neon-img) {
+    text-align: center;
+}

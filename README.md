@@ -2,7 +2,7 @@
 
 Sistema web de controle de estoque desenvolvido em PHP e MySQL.
 
-## Funcionalidades
+# Funcionalidades
 
 - Login de usuários
 - Cadastro de produtos
@@ -11,15 +11,15 @@ Sistema web de controle de estoque desenvolvido em PHP e MySQL.
 - Busca de produtos
 - Notificações de estoque baixo (em desenvolvimento)
 
-## Dashboard
+# Dashboard
 
 ![Dashboard](assets/dashboard.png)
 
-## Tela de Produtos
+# Tela de Produtos
 
 ![Produtos](assets/produtos.png)
 
-## Tecnologias
+# Tecnologias
 
 - PHP
 - MySQL

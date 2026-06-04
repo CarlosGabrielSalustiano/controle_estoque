@@ -38,7 +38,7 @@ $ultimas_mov = $conn->query("
     <ul>
         <li><a href="home.php" style="font-weight: bold;">Dashboard</a></li>
         <li><a href="cadastrar_produto.php">Cadastrar Produto</a></li>
-        <li><a href="listar_produtos.php">Listar Produtos</a></li>
+        <li><a href="produtos_estoque.php">Listar Produtos</a></li>
         <li><a href="movimentar.php">Movimentações</a></li>
         <li><a href="configuracoes.php">Configurações</a></li>
         <li><a href="logout.php" style="color: #ef4444;">Sair</a></li>

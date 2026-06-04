@@ -10,18 +10,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
 
-        if ($senha == $user["senha"]) {
-            $_SESSION["usuario_id"] = $user["id"];
-            $_SESSION["usuario_nome"] = $user["nome"];
-            header("Location: home.php");
-        } else {
-           echo "<div class='erro-msg'>Senha incorreta!</div>";
-        }
+    $user = $result->fetch_assoc();
+
+    if (password_verify($senha, $user["senha"])) {
+
+        $_SESSION["usuario_id"] = $user["id"];
+        $_SESSION["usuario_nome"] = $user["nome"];
+
+        header("Location: home.php");
+        exit;
+
     } else {
-        echo "<div class='erro-msg'>Usuário não encontrado!</div>";
+        echo "<div class='erro-msg'>Senha incorreta!</div>";
     }
+}
 }
 ?>
 
@@ -41,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
     <h1 class="stockfy-neon">STOCKFY</h1>
 
-    <h2>Login</h2>
+    <h2><i>Seu estoque inteligente e organizado</i></h2>
 
     <form method="post">
         <div class="form-group">
@@ -52,6 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="senha" required>
 
         <button type="submit">Entrar</button>
+
+        <p>Não possui cadastro?</p>
+
+        <a href="cadastro_usuario.php" class="btn-cadastro">Criar Conta</a>
     </form>
 
 </body>

@@ -105,6 +105,7 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
     </div>
 
     <h2>📊 Controle de saída </h2>
+    <a href="home.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">⬅ Voltar ao Painel</a>
 
     <form method="post" class="form-movimentar">
         <label>Produto:</label>
@@ -170,7 +171,5 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
         </tbody>
     </table>
 
-    <br>
-    <a href="home.php">⬅ Voltar ao Painel</a>
 </body>
 </html>
