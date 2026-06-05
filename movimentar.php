@@ -93,16 +93,13 @@ $totalSaidas   = $conn->query("SELECT SUM(quantidade) AS total FROM movimentacoe
             let filtro = input.value.toLowerCase();
             let linhas = document.querySelectorAll("#tabelaMov tbody tr");
             linhas.forEach(linha => {
-                let texto = linha.innerText.toLowerCase(); // <-- Corrigido aqui (linha em vez de line)
+                let texto = linha.innerText.toLowerCase();
                 linha.style.display = texto.includes(filtro) ? "" : "none";
             });
         }
     </script>
 </head>
 <body>
-    <div class="welcome">
-        Bem-vindo, <?php echo $_SESSION["usuario_nome"]; ?>!
-    </div>
 
     <h2>📊 Controle de saída </h2>
     <a href="home.php" style="color: #1e3a8a; font-weight: bold; text-decoration: none;">⬅ Voltar ao Painel</a>
