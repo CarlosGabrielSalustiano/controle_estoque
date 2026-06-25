@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-br">
 <head>
     <meta charset="pt-br">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto - STOCKFY</title>
     <link rel="stylesheet" href="style.css">
 </head>
